@@ -49,8 +49,11 @@ def alra(
 
     sigma_1 = np.nanstd(a_norm_rank_k_cor, axis=0)
     sigma_2 = np.nanstd(a_norm, axis=0)
-    mu_1 = np.divide(a_norm_rank_k_cor.sum(axis=0), a_norm_rank_k_cor.sum(axis=0))
-    mu_2 = np.divide(a_norm.sum(axis=0), (a_norm > 0).sum(axis=0))
+    #mu_1 = np.divide(a_norm_rank_k_cor.sum(axis=0), a_norm_rank_k_cor.sum(axis=0))
+    #mu_2 = np.divide(a_norm.sum(axis=0), (a_norm > 0).sum(axis=0))
+    # JYC: debug
+    mu_1 = np.divide(np.sum(a_norm_rank_k_cor, axis=0), np.sum(a_norm_rank_k_cor > 0, axis=0))
+    mu_2 = np.divide(np.sum(a_norm, axis=0), np.sum(a_norm > 0, axis=0))
 
     toscale = np.logical_and(
         np.logical_and(~np.isnan(sigma_1), ~np.isnan(sigma_2)),
